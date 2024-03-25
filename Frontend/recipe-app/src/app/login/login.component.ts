@@ -1,30 +1,28 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-// Import AuthService and other necessary imports...
 export class LoginComponent {
   email: string = '';
   password: string = '';
+  constructor(private http: HttpClient, private router: Router) {}
 
-  constructor(private authService: AuthService, private router: Router) {}
+  onSubmit() {
+    const formData = new FormData();
+    formData.append('email', this.email);
+    formData.append('password', this.password);
 
-  onLogin(): void {
-    this.authService
-      .login({ email: this.email, password: this.password })
-      .subscribe({
-        next: (response) => {
-          console.log('Login successful');
-          this.router.navigate(['/dashboard']);
-        },
-        error: (error) => {
-          console.error('Login failed:', error);
-        },
-      });
+    this.http.post(`${environment.api_url}/auth/login`, formData).subscribe(
+      (response) => console.log(response),
+
+      (error) => console.log(error)
+    );
+    // If login successful, navigate to dashboard page
+    this.router.navigate(['/home']);
   }
 }

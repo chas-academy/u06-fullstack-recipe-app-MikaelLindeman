@@ -18,5 +18,9 @@ export class AuthService {
       );
   }
 
+  register(user: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/register`, user);
+  }
+
   // Implement other methods such as logout, check authentication status, etc.
 }

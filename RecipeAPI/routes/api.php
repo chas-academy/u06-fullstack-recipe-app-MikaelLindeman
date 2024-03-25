@@ -16,10 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Login user
-Route::post('login', [AuthController::class, 'login']);
-// Register user
-Route::post('register', [AuthController::class, 'register']);
+Route::post('/auth/register', [AuthController::class, 'createUser']);
+Route::post('/auth/login', [AuthController::class, 'loginUser']);
 
 // If logged in...
 Route::group(['middleware' => 'auth:sanctum'], function() {
@@ -31,13 +29,4 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     // TODO: CRUD for recipe lists
 });
 
-Route::post('/login', function (Request $request) {
-    $credentials = $request->only('email', 'password');
 
-    if (Auth::attempt($credentials)) {
-        $request->session()->regenerate();
-        return response()->json(['message' => 'Logged in successfully']);
-    }
-
-    return response()->json(['error' => 'The provided credentials do not match our records.'], 401);
-});
