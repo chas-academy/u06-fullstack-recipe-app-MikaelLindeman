@@ -1,5 +1,4 @@
-<!-- In recipe-search.component.html, assuming you're iterating over 'recipes' -->
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-4" *ngFor="let item of recipes">
     <div class="card mb-3">
       <img
@@ -18,5 +17,56 @@
         </button>
       </div>
     </div>
+  </div>
+</div> -->
+<div class="row">
+  <div class="col-md-4" *ngFor="let item of recipes">
+    <section class="mx-auto my-5" style="max-width: 23rem">
+      <div class="card shadow mb-5 bg-white rounded">
+        <div class="bg-image" data-mdb-ripple-color="light">
+          <!-- Dynamically setting the recipe image -->
+          <img
+            [src]="item.recipe.image"
+            class="img-fluid w-100"
+            alt="{{ item.recipe.label }}"
+            style="border-radius: 7px 7px 0 0"
+          />
+
+          <!-- Placeholder for a link to view the recipe detail - adapt as needed -->
+          <a [href]="item.recipe.url" target="_blank">
+            <div
+              class="mask"
+              style="background-color: rgba(251, 251, 251, 0.15)"
+            >
+              Recipe
+            </div>
+          </a>
+        </div>
+        <div class="card-body" style="padding: 20px !important">
+          <!-- Dynamically setting the recipe label -->
+          <h5 class="card-title font-weight-bold">{{ item.recipe.label }}</h5>
+          <!-- Displaying the recipe cuisineType if available -->
+          <p class="mb-2">
+            {{ item.recipe.cuisineType?.join(", ") | uppercase }}
+          </p>
+
+          <!-- Displaying health labels if available -->
+          <p class="card-text health-text">
+            Health: {{ item.recipe.healthLabels?.join(", ") || "General" }}
+          </p>
+
+          <hr class="my-4" />
+          <!-- Conditionally showing the Add to Recipes button for logged-in users -->
+          <button
+            *ngIf="isLoggedIn()"
+            (click)="addRecipe(item.recipe)"
+            class="btn btn-primary mx-auto d-flex"
+            style="background-color: #56d05b; border: none"
+          >
+            + Add to Recipes
+          </button>
+        </div>
+      </div>
+    </section>
   </div>
 </div>
