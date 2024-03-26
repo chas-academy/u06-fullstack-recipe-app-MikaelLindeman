@@ -16,4 +16,9 @@ export class EdamamService {
     const params = `?q=${query}&app_id=${this.appId}&app_key=${this.appKey}&from=0&to=10`;
     return this.http.get(`${this.apiUrl}${params}`);
   }
+
+  getRecipeDetails(id: string): Observable<any> {
+    const url = `https://api.edamam.com/api/recipes/v2/${id}?type=public&app_id=${this.appId}&app_key=${this.appKey}`;
+    return this.http.get<any>(url);
+  }
 }

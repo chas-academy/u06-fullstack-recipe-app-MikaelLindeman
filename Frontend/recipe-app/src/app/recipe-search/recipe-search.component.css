@@ -5,4 +5,10 @@
   display: -webkit-box;
   -webkit-line-clamp: 3; /* Show only 2 lines of text */
   -webkit-box-orient: vertical;
+}
+
+.card-title {
+  white-space: nowrap; /* Keeps the text on a single line */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Display an ellipsis for truncated text */
 }/*# sourceMappingURL=recipe-search.component.css.map */

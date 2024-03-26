@@ -11,9 +11,10 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
+import { RecipePageComponent } from './recipe-page/recipe-page.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, LoginComponent, HomeComponent, RegisterComponent, RecipeSearchComponent],
+  declarations: [AppComponent, NavbarComponent, LoginComponent, HomeComponent, RegisterComponent, RecipeSearchComponent, RecipePageComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

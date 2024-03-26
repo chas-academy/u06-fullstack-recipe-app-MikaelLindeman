@@ -1,0 +1,4 @@
+<div *ngIf="recipe">
+  <img [src]="recipe?.image" alt="{{ recipe?.label }}" class="img-fluid" />
+  <h2>{{ recipe?.label }}</h2>
+</div>

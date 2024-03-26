@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EdamamService } from '../edamam.service';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-recipe-search',
@@ -12,11 +14,14 @@ export class RecipeSearchComponent implements OnInit {
 
   constructor(
     private edamamService: EdamamService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
+    private recipe: RecipeService
   ) {}
 
   ngOnInit(): void {
     this.search('dinner');
+    console.log(this.recipes); // Log the recipes array after it's populated
   }
 
   search(query: string): void {
@@ -47,5 +52,10 @@ export class RecipeSearchComponent implements OnInit {
         // Handle error (e.g., show an error message)
       },
     });
+  }
+
+  viewRecipeDetail(uri: string): void {
+    const id = uri.split('#recipe_')[1];
+    this.router.navigate(['/recipe-page', id]);
   }
 }
