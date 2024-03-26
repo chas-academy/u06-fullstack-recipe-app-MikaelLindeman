@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, switchMap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -27,5 +28,17 @@ export class AuthService {
   }
   logout(): void {
     localStorage.removeItem('token');
+  }
+
+  addRecipeToUserList(recipe: any): Observable<any> {
+    return this.http.post(
+      `${environment.api_url}/user/recipes`,
+      { recipe },
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        }),
+      }
+    );
   }
 }

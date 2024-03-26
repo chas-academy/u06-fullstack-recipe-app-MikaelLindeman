@@ -1,0 +1,22 @@
+<!-- In recipe-search.component.html, assuming you're iterating over 'recipes' -->
+<div class="row">
+  <div class="col-md-4" *ngFor="let item of recipes">
+    <div class="card mb-3">
+      <img
+        src="{{ item.recipe.image }}"
+        class="card-img-top"
+        alt="{{ item.recipe.label }}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ item.recipe.label }}</h5>
+        <button
+          *ngIf="isLoggedIn()"
+          class="btn btn-primary"
+          (click)="addRecipe(item.recipe)"
+        >
+          + Recipe
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

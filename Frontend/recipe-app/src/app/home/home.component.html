@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <img src="/Frontend/recipe-app/src/assets/images/food.jpeg" />
-  </body>
-</html>
+<!-- Using Bootstrap's classes for styling -->
+<div class="container-fluid px-0 overflow-hidden">
+  <div class="position-relative text-center text-white bg-dark">
+    <img
+      src="assets/images/food.jpeg"
+      alt="Picture of food"
+      class="img-fluid"
+    />
+    <h1 class="position-absolute top-50 start-50 translate-middle welcome-text">
+      Welcome to Recipe Site
+    </h1>
+  </div>
+</div>
+
+<div class="container py-4">
+  <app-recipe-search></app-recipe-search>
+</div>
