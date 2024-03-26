@@ -22,7 +22,6 @@ export class LoginComponent {
 
       (error) => console.log(error)
     );
-    // If login successful, navigate to dashboard page
     this.router.navigate(['/home']);
   }
 }
