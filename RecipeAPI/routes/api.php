@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserRecipeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,11 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('getuser/{id}', [AuthController::class, 'getUser']);
     
     // TODO: CRUD for recipe lists
+});
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/user/recipes', [UserRecipeController::class, 'store']);
 });
 
 
