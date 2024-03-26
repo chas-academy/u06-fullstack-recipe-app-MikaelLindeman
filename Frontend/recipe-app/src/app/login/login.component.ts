@@ -17,11 +17,16 @@ export class LoginComponent {
     formData.append('email', this.email);
     formData.append('password', this.password);
 
-    this.http.post(`${environment.api_url}/auth/login`, formData).subscribe(
-      (response) => console.log(response),
-
-      (error) => console.log(error)
-    );
-    this.router.navigate(['/home']);
+    this.http.post(`${environment.api_url}/auth/login`, formData).subscribe({
+      next: (response: any) => {
+        console.log('Login successful', response);
+        // Assuming the response contains a token, adjust based on your actual API response
+        localStorage.setItem('token', response.token); // Store the token
+        this.router.navigate(['/home']); // Navigate to the home page
+      },
+      error: (error) => {
+        console.log('Login failed', error);
+      },
+    });
   }
 }

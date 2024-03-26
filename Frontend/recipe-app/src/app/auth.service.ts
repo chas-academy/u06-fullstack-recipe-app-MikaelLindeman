@@ -22,5 +22,10 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/register`, user);
   }
 
-  // Implement other methods such as logout, check authentication status, etc.
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
+  logout(): void {
+    localStorage.removeItem('token');
+  }
 }
