@@ -13,14 +13,12 @@ class UserRecipeController extends Controller
         $validated = $request->validate([
             'recipe_id' => 'required',
             'label' => 'required',
-            'image' => 'nullable',
         ]);
 
         $recipe = new UserRecipe;
         $recipe->user_id = Auth::id();
         $recipe->recipe_id = $validated['recipe_id'];
         $recipe->label = $validated['label'];
-        $recipe->image = $validated['image'] ?? null;
         $recipe->save();
 
         return response()->json(['message' => 'Recipe added successfully', 'recipe' => $recipe]);

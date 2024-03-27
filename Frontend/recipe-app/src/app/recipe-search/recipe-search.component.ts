@@ -16,7 +16,7 @@ export class RecipeSearchComponent implements OnInit {
     private edamamService: EdamamService,
     private authService: AuthService,
     private router: Router,
-    private recipe: RecipeService
+    private recipeService: RecipeService
   ) {}
 
   ngOnInit(): void {
@@ -40,17 +40,10 @@ export class RecipeSearchComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
-  addRecipe(recipe: any): void {
-    // Assuming you have a method in your AuthService to add a recipe to the user's list
-    this.authService.addRecipeToUserList(recipe).subscribe({
-      next: (response) => {
-        console.log('Recipe added to list', response);
-        // Handle success (e.g., show a confirmation message)
-      },
-      error: (error) => {
-        console.error('Error adding recipe to list', error);
-        // Handle error (e.g., show an error message)
-      },
+  addRecipe(recipeId: string, label: string): void {
+    this.recipeService.saveRecipe(recipeId, label).subscribe({
+      next: (response) => console.log('Recipe saved successfully', response),
+      error: (error) => console.error('Error saving recipe', error),
     });
   }
 

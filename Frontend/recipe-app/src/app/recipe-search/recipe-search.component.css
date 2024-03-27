@@ -1,14 +1,14 @@
 .health-text {
-  height: 3em; /* Adjust based on your content and font size */
-  overflow: hidden; /* Hide overflow */
-  text-overflow: ellipsis; /* Add ellipsis if text overflows */
+  height: 3em;
+  overflow: hidden;
+  text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Show only 2 lines of text */
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 
 .card-title {
-  white-space: nowrap; /* Keeps the text on a single line */
-  overflow: hidden; /* Hide overflow */
-  text-overflow: ellipsis; /* Display an ellipsis for truncated text */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }/*# sourceMappingURL=recipe-search.component.css.map */

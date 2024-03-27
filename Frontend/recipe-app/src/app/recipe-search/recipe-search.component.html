@@ -31,7 +31,7 @@
             </button>
             <button
               *ngIf="isLoggedIn()"
-              (click)="addRecipe(item.recipe)"
+              (click)="addRecipe(item.recipe.id, item.recipe.label)"
               class="btn btn-primary mx-auto d-flex"
               style="background-color: #56d05b; border: none"
             >
