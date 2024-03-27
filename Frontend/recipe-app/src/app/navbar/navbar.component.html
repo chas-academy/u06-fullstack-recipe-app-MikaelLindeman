@@ -35,6 +35,9 @@
 
         <ng-template #loggedOut>
           <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/my-recipes']">My Recipes</a>
+          </li>
+          <li class="nav-item">
             <button class="btn nav-link" (click)="onLogout()">Log out</button>
           </li>
         </ng-template>

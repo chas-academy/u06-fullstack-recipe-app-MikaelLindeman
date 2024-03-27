@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #f2fff4 !important;
+}
+
 .card {
-  --bs-card-border-width: 0; /* Remove the border */
-  border: none !important; /* Ensures the border is removed if --bs-card-border-width doesn't cover it */
+  --bs-card-border-width: 0;
+  border: none !important;
   padding: 0;
 }/*# sourceMappingURL=styles.css.map */

@@ -12,9 +12,10 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
 import { RecipePageComponent } from './recipe-page/recipe-page.component';
+import { MyRecipesComponent } from './my-recipes/my-recipes.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, LoginComponent, HomeComponent, RegisterComponent, RecipeSearchComponent, RecipePageComponent],
+  declarations: [AppComponent, NavbarComponent, LoginComponent, HomeComponent, RegisterComponent, RecipeSearchComponent, RecipePageComponent, MyRecipesComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
