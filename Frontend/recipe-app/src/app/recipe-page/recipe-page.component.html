@@ -1,4 +1,36 @@
-<div *ngIf="recipe">
-  <img [src]="recipe?.image" alt="{{ recipe?.label }}" class="img-fluid" />
-  <h2>{{ recipe?.label }}</h2>
+<div *ngIf="recipe" class="container mt-5">
+  <!-- Image and Label centered with Bootstrap 'text-center' class -->
+  <div class="text-center">
+    <img
+      [src]="recipe?.image"
+      alt="{{ recipe?.label }}"
+      class="img-fluid mb-3"
+      style="max-height: 400px; object-fit: cover"
+    />
+    <h2>{{ recipe?.label }}</h2>
+  </div>
+
+  <!-- Ingredients List centered with Bootstrap 'text-center' class -->
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h3>Ingredients</h3>
+      <ul class="list-group">
+        <li
+          *ngFor="let ingredient of recipe?.ingredientLines"
+          class="list-group-item"
+        >
+          {{ ingredient }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 'To the recipe' Button centered with Bootstrap 'text-center' class -->
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-8 text-center">
+      <a [href]="recipe?.url" target="_blank" class="btn btn-primary"
+        >To the Recipe</a
+      >
+    </div>
+  </div>
 </div>
