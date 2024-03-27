@@ -10,6 +10,7 @@ import { EdamamService } from '../edamam.service';
 })
 export class RecipePageComponent implements OnInit {
   recipe: any;
+  selectedIngredients = new Set<number>();
 
   constructor(
     private route: ActivatedRoute,
@@ -32,19 +33,13 @@ export class RecipePageComponent implements OnInit {
       }
     });
   }
-  // ngOnInit(): void {
-  //   const recipeId = this.route.snapshot.paramMap.get('id');
-  //   if (recipeId) {
-  //     this.edamamService.getRecipeDetails(recipeId).subscribe({
-  //       next: (data) => {
-  //         // Assuming the structure of the data is as expected; adjust as necessary
-  //         this.recipe = data;
-  //       },
-  //       error: (error) =>
-  //         console.error('Error fetching recipe details:', error),
-  //     });
-  //   }
-  // }
+  toggleIngredient(index: number): void {
+    if (this.selectedIngredients.has(index)) {
+      this.selectedIngredients.delete(index);
+    } else {
+      this.selectedIngredients.add(index);
+    }
+  }
 
   getIngredientsList(): string {
     return (

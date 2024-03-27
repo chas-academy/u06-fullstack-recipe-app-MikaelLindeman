@@ -1,5 +1,4 @@
-<div *ngIf="recipe" class="container mt-5">
-  <!-- Image and Label centered with Bootstrap 'text-center' class -->
+<!-- <div *ngIf="recipe" class="container mt-5">
   <div class="text-center">
     <img
       [src]="recipe?.image"
@@ -10,14 +9,18 @@
     <h2>{{ recipe?.label }}</h2>
   </div>
 
-  <!-- Ingredients List centered with Bootstrap 'text-center' class -->
   <div class="row justify-content-center">
     <div class="col-md-8">
       <h3>Ingredients</h3>
+      <h6 class="text-muted">
+        You can toggle ingredients you own by pressing them.
+      </h6>
       <ul class="list-group">
         <li
-          *ngFor="let ingredient of recipe?.ingredientLines"
-          class="list-group-item"
+          *ngFor="let ingredient of recipe?.ingredientLines; let i = index"
+          class="list-group-item list-group-item-action"
+          (click)="toggleIngredient(i)"
+          [class.list-group-item-success]="selectedIngredients.has(i)"
         >
           {{ ingredient }}
         </li>
@@ -25,12 +28,84 @@
     </div>
   </div>
 
-  <!-- 'To the recipe' Button centered with Bootstrap 'text-center' class -->
   <div class="row justify-content-center mt-4">
     <div class="col-md-8 text-center">
       <a [href]="recipe?.url" target="_blank" class="btn btn-primary"
         >To the Recipe</a
       >
+    </div>
+  </div>
+</div> -->
+
+<div *ngIf="recipe" class="container mt-5">
+  <div class="card shadow mb-5 bg-white rounded" style="border-radius: 8px">
+    <div class="row g-0">
+      <!-- Image on the left -->
+      <div class="col-md-6">
+        <img
+          [src]="recipe?.image"
+          alt="{{ recipe?.label }}"
+          class="img-fluid rounded-start"
+          style="
+            border-radius: 8px 0 0 8px;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+          "
+        />
+      </div>
+
+      <!-- Recipe details on the right -->
+      <div class="col-md-6">
+        <div class="card-body">
+          <h2 class="card-title">{{ recipe?.label }}</h2>
+
+          <!-- Accordion for Ingredients -->
+          <!-- Accordion for Ingredients -->
+          <div class="accordion" id="ingredientsAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingIngredients">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseIngredients"
+                  aria-expanded="false"
+                  aria-controls="collapseIngredients"
+                >
+                  Ingredients
+                </button>
+              </h2>
+              <div
+                id="collapseIngredients"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingIngredients"
+              >
+                <div
+                  class="accordion-body"
+                  style="max-height: 300px; overflow-y: auto"
+                >
+                  <ul class="list-group list-group-flush">
+                    <li
+                      *ngFor="let ingredient of recipe?.ingredientLines"
+                      class="list-group-item"
+                    >
+                      {{ ingredient }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center mt-4 button-container">
+            <div class="col text-center">
+              <a [href]="recipe?.url" target="_blank" class="btn btn-success"
+                >To the Recipe</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
