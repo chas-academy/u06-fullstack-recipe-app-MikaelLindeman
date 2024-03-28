@@ -19,7 +19,6 @@ export class RegisterComponent {
     formData.append('name', this.name);
     formData.append('email', this.email);
     formData.append('password', this.password);
-    //formData.append('password_confirmation', this.passwordConfirmation);
 
     this.http.post(`${environment.api_url}/auth/register`, formData).subscribe(
       (response) => console.log(response),

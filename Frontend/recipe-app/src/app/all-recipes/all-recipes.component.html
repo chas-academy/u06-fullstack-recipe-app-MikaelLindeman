@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <div class="row mb-3">
+    <div class="col">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search recipes..."
+        [(ngModel)]="searchQuery"
+        (keyup.enter)="searchRecipes()"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let item of searchResults">
+      <div class="card shadow mb-5 bg-white rounded">
+        <img
+          [src]="item.recipe.image"
+          class="card-img-top"
+          alt="{{ item.recipe.label }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ item.recipe.label }}</h5>
+          <a
+            href="{{ item.recipe.url }}"
+            class="btn btn-primary"
+            target="_blank"
+            >View Recipe</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -24,6 +24,10 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/recipes']">Recipes</a>
+        </li>
+
         <ng-container *ngIf="!isLoggedIn(); else loggedOut">
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/login']">Sign in</a>
