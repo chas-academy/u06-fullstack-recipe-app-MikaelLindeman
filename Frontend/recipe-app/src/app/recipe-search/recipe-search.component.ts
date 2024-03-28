@@ -21,7 +21,7 @@ export class RecipeSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.search('dinner');
-    console.log(this.recipes); // Log the recipes array after it's populated
+    console.log(this.recipes);
   }
 
   search(query: string): void {
@@ -41,15 +41,12 @@ export class RecipeSearchComponent implements OnInit {
   }
 
   addRecipe(recipe: any): void {
-    // Assuming you have a method in your AuthService to add a recipe to the user's list
     this.authService.addRecipeToUserList(recipe).subscribe({
       next: (response) => {
         console.log('Recipe added to list', response);
-        // Handle success (e.g., show a confirmation message)
       },
       error: (error) => {
         console.error('Error adding recipe to list', error);
-        // Handle error (e.g., show an error message)
       },
     });
   }
