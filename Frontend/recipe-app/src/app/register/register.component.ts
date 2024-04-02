@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
+  errorMessage: string | null = null;
   email: string = '';
   password: string = '';
   name: string = '';
@@ -20,9 +21,15 @@ export class RegisterComponent {
     formData.append('email', this.email);
     formData.append('password', this.password);
 
-    this.http.post(`${environment.api_url}/auth/register`, formData).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    );
+    this.http.post(`${environment.api_url}/auth/register`, formData).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.router.navigate(['/login']);
+      },
+      error: (error) => {
+        console.log(error);
+        this.errorMessage = 'Registration failed. Please try again.';
+      },
+    });
   }
 }

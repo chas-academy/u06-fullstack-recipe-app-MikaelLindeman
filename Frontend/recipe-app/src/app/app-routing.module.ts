@@ -9,6 +9,8 @@ import { MyRecipesComponent } from './my-recipes/my-recipes.component';
 import { AllRecipesComponent } from './all-recipes/all-recipes.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

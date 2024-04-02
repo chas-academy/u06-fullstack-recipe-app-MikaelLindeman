@@ -50,6 +50,10 @@
             <button type="submit" class="btn btn-primary" (click)="onSubmit()">
               Register
             </button>
+
+            <div *ngIf="errorMessage" class="alert alert-danger">
+              {{ errorMessage }}
+            </div>
           </form>
         </div>
       </div>

@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  errorMessage: string | null = null;
+
   email: string = '';
   password: string = '';
   constructor(private http: HttpClient, private router: Router) {}
@@ -19,13 +21,12 @@ export class LoginComponent {
 
     this.http.post(`${environment.api_url}/auth/login`, formData).subscribe({
       next: (response: any) => {
-        console.log('Login successful', response);
-        // Assuming the response contains a token, adjust based on your actual API response
-        localStorage.setItem('token', response.token); // Store the token
-        this.router.navigate(['/home']); // Navigate to the home page
+        localStorage.setItem('token', response.token);
+        this.router.navigate(['/home']);
       },
       error: (error) => {
         console.log('Login failed', error);
+        this.errorMessage = 'Login failed. Please try again.';
       },
     });
   }
