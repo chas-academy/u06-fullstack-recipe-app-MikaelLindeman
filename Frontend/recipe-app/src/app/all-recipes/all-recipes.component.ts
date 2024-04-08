@@ -12,16 +12,22 @@ export class AllRecipesComponent implements OnInit {
   searchResults: any[] = [];
   allergies = ['Gluten', 'Dairy', 'Eggs'];
   selectedAllergies: string[] = [];
-  searchQuery: string = ''; // The current search term
-  allRecipes: any[] = []; // Store all fetched recipes here
-  displayedRecipes: any[] = []; // Recipes to be displayed, after applying filters
-  selectedHealthLabels: string[] = []; // Track selected health labels
+  searchQuery: string = '';
+  allRecipes: any[] = [];
+  displayedRecipes: any[] = [];
+  selectedHealthLabels: string[] = [];
   healthLabels = [
     { label: 'Dairy-Free', value: 'dairy-free' },
     { label: 'Vegan', value: 'vegan' },
     { label: 'Gluten-Free', value: 'gluten-free' },
   ];
   selectedFilters: Set<string> = new Set();
+  mealTypes = [
+    { label: 'Breakfast', value: 'breakfast' },
+    { label: 'Snack', value: 'snack' },
+    { label: 'Brunch', value: 'brunch' },
+  ];
+  selectedMealTypes: Set<string> = new Set();
 
   private appId: string = 'a70e13cc';
   private appKey: string = '6bc7956167e26b2efa8c5ccd8e78334c	';
@@ -35,49 +41,18 @@ export class AllRecipesComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  //   searchRecipes(): void {
-  //     this.edamameService.searchRecipes(this.searchQuery).subscribe({
-  //       next: (response) => {
-  //         this.searchResults = response.hits;
-  //       },
-  //       error: (error) => {
-  //         console.error('Error fetching recipes:', error);
-  //       },
-  //     });
-  //   }
-  //   applyFilters(): void {
-  //     this.edamameService
-  //       .searchRecipesWithFilters(this.searchQuery, this.selectedAllergies)
-  //       .subscribe({
-  //         next: (response) => {
-  //           this.searchResults = response.hits;
-  //         },
-  //         error: (error) =>
-  //           console.error('Error fetching recipes with filters:', error),
-  //       });
-  //     console.log(this.selectedAllergies);
-  //   }
-
-  //   onCheckboxChange(allergy: string, isChecked: boolean): void {
-  //     if (isChecked) {
-  //       this.selectedAllergies.push(allergy);
-  //     } else {
-  //       const index = this.selectedAllergies.indexOf(allergy);
-  //       if (index > -1) {
-  //         this.selectedAllergies.splice(index, 1);
-  //       }
-  //     }
-  //   }
-  // }
-
-  // Fetch recipes based on search term and store them
   searchRecipes(): void {
-    // Convert selectedFilters Set to an array of strings
     const selectedHealthLabels = Array.from(this.selectedFilters);
+    const selectedMealTypesArray = Array.from(this.selectedMealTypes);
 
-    // Pass the search query and the selected health labels to the service
+    // Pass the search query, selected health labels, and selected meal types to the service
     this.edamameService
-      .searchRecipes(this.searchQuery, selectedHealthLabels)
+      .searchRecipes(
+        this.searchQuery,
+        selectedHealthLabels,
+        selectedMealTypesArray
+      )
+
       .subscribe({
         next: (response) => {
           this.searchResults = response.hits;
@@ -113,6 +88,16 @@ export class AllRecipesComponent implements OnInit {
       this.selectedFilters.add(value);
     } else {
       this.selectedFilters.delete(value);
+    }
+
+    this.searchRecipes();
+  }
+
+  onMealTypeChange(value: string, isChecked: boolean) {
+    if (isChecked) {
+      this.selectedMealTypes.add(value);
+    } else {
+      this.selectedMealTypes.delete(value);
     }
 
     this.searchRecipes();

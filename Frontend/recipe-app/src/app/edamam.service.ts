@@ -32,15 +32,28 @@ export class EdamamService {
 
   //   return this.http.get(`${this.apiUrl}`, { params });
   // }
-  searchRecipes(query: string, healthLabels: string[] = []): Observable<any> {
+  // Assuming `searchRecipes` uses a single array for both health labels and meal types
+  // EdamamService
+
+  // Update the method to include a third parameter for meal types
+  searchRecipes(
+    query: string,
+    healthLabels: string[] = [],
+    mealTypes: string[] = []
+  ): Observable<any> {
     let params = new HttpParams()
       .set('q', query)
       .set('app_id', this.appId)
       .set('app_key', this.appKey);
 
-    // Append each health label as a separate 'health' parameter
+    // Append health labels to the request
     healthLabels.forEach((label) => {
       params = params.append('health', label);
+    });
+
+    // Append meal types to the request, if your API supports it
+    mealTypes.forEach((type) => {
+      params = params.append('mealType', type); // Assuming 'mealType' is a supported parameter
     });
 
     return this.http.get(`${this.apiUrl}`, { params });

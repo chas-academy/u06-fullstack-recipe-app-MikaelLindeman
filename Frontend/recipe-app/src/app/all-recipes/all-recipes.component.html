@@ -38,15 +38,31 @@
         </a>
       </li>
     </ul>
-    <button
-      class="btn btn-secondary dropdown-toggle"
-      type="button"
-      id="dropdownMenuButton"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      Select type
-    </button>
+    <div class="dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton2"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Select Meal Type
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+        <li *ngFor="let mealType of mealTypes">
+          <a class="dropdown-item">
+            <input
+              type="checkbox"
+              [checked]="selectedMealTypes.has(mealType.value)"
+              (change)="
+                onMealTypeChange(mealType.value, $any($event.target)?.checked)
+              "
+            />
+            {{ mealType.label }}
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <div class="row">
