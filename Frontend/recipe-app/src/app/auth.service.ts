@@ -7,7 +7,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8000/api'; // Adjust this URL to your Laravel API
+  private baseUrl =
+    'https://u06-fullstack-recipe-app-mikaellindeman-2.onrender.com/';
 
   constructor(private http: HttpClient) {}
 
