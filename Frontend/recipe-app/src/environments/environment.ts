@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  api_url: "http://localhost:8000/api",
+  api_url: 'https://u06-fullstack-recipe-app-mikaellindeman-2.onrender.com',
 };
