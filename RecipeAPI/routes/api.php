@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserRecipeController;
 
 
-Route::post('/auth/register', [AuthController::class, 'createUser']);
+Route::post('/api/auth/register', [AuthController::class, 'createUser']);
 Route::post('/auth/login', [AuthController::class, 'loginUser']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {

@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   private baseUrl =
-    'https://u06-fullstack-recipe-app-mikaellindeman-2.onrender.com/';
+    'https://u06-fullstack-recipe-app-mikaellindeman-2.onrender.com/api';
 
   constructor(private http: HttpClient) {}
 
