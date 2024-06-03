@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EdamamService } from '../edamam.service';
 import { RecipeService } from '../recipe.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-recipes',
@@ -36,7 +37,8 @@ export class AllRecipesComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private edamameService: EdamamService,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -101,5 +103,10 @@ export class AllRecipesComponent implements OnInit {
     }
 
     this.searchRecipes();
+  }
+
+  viewRecipeDetail(recipeUri: string): void {
+    const id = recipeUri.split('#recipe_')[1];
+    this.router.navigate(['/recipe-page', id]); // Update this route as per your application's routing
   }
 }
